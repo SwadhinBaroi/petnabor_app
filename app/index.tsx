@@ -1,4 +1,5 @@
-import { Text, View } from 'react-native';
+import { router } from 'expo-router';
+import { Text, TouchableOpacity, View } from 'react-native';
 
 export default function Index() {
   return (
@@ -9,7 +10,9 @@ export default function Index() {
         alignItems: 'center',
       }}
     >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
+      <TouchableOpacity onPress={() => router.push('/auth/signup/sign-up')}>
+        <Text>Signup</Text>
+      </TouchableOpacity>
     </View>
   );
 }
