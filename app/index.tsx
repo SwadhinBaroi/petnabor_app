@@ -10,8 +10,8 @@ export default function Index() {
         alignItems: 'center',
       }}
     >
-      <TouchableOpacity onPress={() => router.push('/auth/signup/sign-up')}>
-        <Text>Signup</Text>
+      <TouchableOpacity onPress={() => router.push('/auth/signup')}>
+        <Text style={{ fontFamily: 'PoppinsRegular' }}>Signup</Text>
       </TouchableOpacity>
     </View>
   );

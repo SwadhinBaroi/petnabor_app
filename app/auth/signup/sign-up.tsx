@@ -1,4 +1,3 @@
-import { FloatingInput } from '@/components/ui/inp';
 import { AppleFloatingInput } from '@/components/ui/input';
 import React, { useState } from 'react';
 import { Text, View } from 'react-native';
@@ -23,13 +22,12 @@ const SignUp = () => {
         value={email}
         onChangeText={setEmail}
       />
-      <FloatingInput label="Email" value={email} onChangeText={setEmail} />
+
       <AppleFloatingInput
         placeholder="Email"
         value={email}
         onChangeText={setEmail}
       />
-      <FloatingInput label="Email" value={email} onChangeText={setEmail} />
     </View>
   );
 };
