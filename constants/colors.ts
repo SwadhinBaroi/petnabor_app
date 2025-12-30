@@ -5,4 +5,5 @@ export const COLORS = {
   borderColor: '#EBEBF6',
   text: '#212121',
   inputLabel: '#4E6184',
+  white: '#FFFFFF',
 };

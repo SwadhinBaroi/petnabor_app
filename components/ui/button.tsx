@@ -8,10 +8,12 @@ const RNButton = ({
   path,
   value,
   tag = 'push',
+  color,
 }: {
   path?: string;
   value: string;
   tag?: string;
+  color?: string;
 }) => {
   // console.log(path);
   return (
@@ -27,16 +29,30 @@ const RNButton = ({
         }
       }}
       style={{
-        backgroundColor: COLORS.primary,
+        backgroundColor: color || '#fff',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        paddingVertical: 13,
+        paddingVertical: 15,
         gap: 15,
-        borderRadius: 30,
+        borderRadius: 4,
+        borderWidth: 1,
+        borderColor: color || COLORS.primary,
+        shadowColor: '#000',
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
       }}
     >
-      <RNText variant="title" size="lg" style={{ color: COLORS.secondary }}>
+      <RNText
+        variant="subtitle"
+        size="base"
+        style={{ color: color ? COLORS.white : COLORS.primary }}
+      >
         {value}
       </RNText>
     </TouchableOpacity>
