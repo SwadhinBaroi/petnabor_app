@@ -13,6 +13,9 @@ export default function Index() {
       <TouchableOpacity onPress={() => router.push('/auth/signup')}>
         <Text style={{ fontFamily: 'PoppinsRegular' }}>Signup</Text>
       </TouchableOpacity>
+      <TouchableOpacity onPress={() => router.push('/auth/login/log-in')}>
+        <Text style={{ fontFamily: 'PoppinsRegular' }}>SignIn</Text>
+      </TouchableOpacity>
     </View>
   );
 }

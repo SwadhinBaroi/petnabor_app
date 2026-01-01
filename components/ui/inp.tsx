@@ -7,36 +7,38 @@ import Animated, {
 } from 'react-native-reanimated';
 
 type Props = {
-  label: string;
+  placeholder: string;
   value: string;
   onChangeText: (text: string) => void;
   secureTextEntry?: boolean;
 };
 
-export const FloatingInput = ({
-  label,
+export const RNInput = ({
+  placeholder,
   value,
   onChangeText,
   secureTextEntry,
 }: Props) => {
   const focused = useSharedValue(false);
 
-  const animatedLabel = useAnimatedStyle(() => ({
-    transform: [
-      {
-        translateY: withTiming(focused.value || value ? -18 : 0, {
-          duration: 180,
-        }),
-      },
-    ],
-    fontSize: withTiming(focused.value || value ? 12 : 16, { duration: 180 }),
-    color: focused.value ? '#007AFF' : '#8E8E93',
-  }));
+  const labelStyle = useAnimatedStyle(() => {
+    const active = focused.value || value.length > 0;
+
+    return {
+      transform: [
+        {
+          translateY: withTiming(active ? -12 : 0, { duration: 180 }),
+        },
+      ],
+      fontSize: withTiming(active ? 12 : 16, { duration: 180 }),
+      color: active ? '#6E6E73' : '#8E8E93',
+    };
+  });
 
   return (
-    <View style={styles.container}>
-      <Animated.Text style={[styles.label, animatedLabel]}>
-        {label}
+    <View style={styles.wrapper}>
+      <Animated.Text style={[styles.placeholder, labelStyle]}>
+        {placeholder}
       </Animated.Text>
 
       <TextInput
@@ -52,25 +54,24 @@ export const FloatingInput = ({
 };
 
 const styles = StyleSheet.create({
-  container: {
+  wrapper: {
     width: '100%',
-    paddingTop: 0,
-    marginVertical: 12,
-  },
-  label: {
-    position: 'absolute',
-    left: 12,
-    top: 18,
-    backgroundColor: '#fff',
-    paddingHorizontal: 4,
-  },
-  input: {
-    height: 48,
+    height: 56,
     borderWidth: 1,
     borderColor: '#D1D1D6',
     borderRadius: 12,
-    paddingHorizontal: 12,
+    paddingHorizontal: 14,
+    justifyContent: 'center',
+  },
+  placeholder: {
+    position: 'absolute',
+    left: 14,
+  },
+  input: {
+    height: '100%',
     fontSize: 16,
+    fontWeight: '500',
     color: '#000',
+    paddingTop: 18,
   },
 });

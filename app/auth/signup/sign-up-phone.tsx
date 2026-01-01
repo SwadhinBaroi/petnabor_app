@@ -8,12 +8,15 @@ import { COLORS } from '@/constants';
 import { Checkbox } from 'expo-checkbox';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
+import { CountryPicker } from 'react-native-country-codes-picker';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
 
 const SignUP = () => {
   const dummyForm = useForm();
   const [isChecked, setChecked] = useState(false);
+  const [show, setShow] = useState(false);
+  const [countryCode, setCountryCode] = useState('+1');
 
   return (
     <BackHeader>
@@ -24,7 +27,7 @@ const SignUP = () => {
             size="xl"
             style={{ marginVertical: 40, textAlign: 'center' }}
           >
-            Sign up with your email
+            Sign up with phone number
           </RNText>
           <View style={{ gap: 20 }}>
             {/* <RNInput placeholder="Email" value={email} onChangeText={setEmail} /> */}
@@ -41,12 +44,61 @@ const SignUP = () => {
               errors={dummyForm.formState.errors}
             />
 
-            <RNInput
-              title="email"
-              control={dummyForm.control}
-              placeholder="Email"
-              errors={dummyForm.formState.errors}
-            />
+            <View style={{ flexDirection: 'row', gap: 15 }}>
+              <View style={{}}>
+                <TouchableOpacity
+                  onPress={() => setShow(true)}
+                  style={{
+                    width: 80,
+                    height: 56,
+                    backgroundColor: COLORS.inputbg,
+                    padding: 10,
+                    justifyContent: 'center',
+                  }}
+                >
+                  <RNText
+                    style={{
+                      fontSize: 17,
+                      fontFamily: 'Medium',
+                      color: COLORS.text,
+                      textAlign: 'center',
+                    }}
+                  >
+                    {countryCode}
+                  </RNText>
+                </TouchableOpacity>
+
+                <CountryPicker
+                  show={show}
+                  pickerButtonOnPress={(item) => {
+                    setCountryCode(item.dial_code);
+                    setShow(false);
+                  }}
+                  style={{
+                    modal: {
+                      height: '80%',
+                      paddingBottom: 10,
+                    },
+                    textInput: {
+                      backgroundColor: COLORS.inputbg,
+                      color: COLORS.inputLabel,
+                    },
+                    countryButtonStyles: {
+                      backgroundColor: COLORS.inputbg,
+                    },
+                  }}
+                  lang={'en'}
+                />
+              </View>
+              <View style={{ flex: 1 }}>
+                <RNInput
+                  title="phone"
+                  control={dummyForm.control}
+                  placeholder="Phone Number"
+                  errors={dummyForm.formState.errors}
+                />
+              </View>
+            </View>
             <RNInput
               title="password"
               control={dummyForm.control}
@@ -90,7 +142,7 @@ const SignUP = () => {
               I agree to the terms and condtions
             </RNText>
           </View>
-          <RNButton value="Sign Up" color={COLORS.primary} />
+          <RNButton value="Sign Up" color={COLORS.primary} path={'/auth/otp'} />
         </View>
       </KeyboardAwareScrollView>
       <View>

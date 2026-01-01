@@ -10,7 +10,7 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
 import { OtpInput } from 'react-native-otp-entry';
 
-const index = () => {
+const GetOTP = () => {
   const dummyForm = useForm();
   const [verify, setVerify] = useState(false);
   return (
@@ -22,7 +22,7 @@ const index = () => {
             size="xl"
             style={{ marginTop: 40, textAlign: 'center' }}
           >
-            Forgot your password?
+            I remove this page
           </RNText>
 
           <View
@@ -115,7 +115,7 @@ const index = () => {
   );
 };
 
-export default index;
+export default GetOTP;
 
 const styles = StyleSheet.create({
   container: {

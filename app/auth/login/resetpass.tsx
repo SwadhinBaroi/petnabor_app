@@ -4,13 +4,12 @@ import RNButton from '@/components/ui/button';
 import { RNInput } from '@/components/ui/input';
 import { RNText } from '@/components/ui/text';
 import { COLORS } from '@/constants';
-import { router } from 'expo-router';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { TouchableOpacity, View } from 'react-native';
+import { View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
 
-const index = () => {
+const ResetPassword = () => {
   const dummyForm = useForm();
   return (
     <BackHeader>
@@ -21,37 +20,31 @@ const index = () => {
             size="xl"
             style={{ marginVertical: 40, textAlign: 'center' }}
           >
-            Login with your email
+            Reset password
           </RNText>
           <View style={{ gap: 20 }}>
-            {/* <RNInput placeholder="Email" value={email} onChangeText={setEmail} /> */}
             <RNInput
-              title="email"
+              title="password"
               control={dummyForm.control}
-              placeholder="Email"
+              placeholder="Enter password"
+              secureTextEntry
               errors={dummyForm.formState.errors}
             />
             <RNInput
               title="password"
               control={dummyForm.control}
-              placeholder="Password"
+              placeholder="Confirm password"
               secureTextEntry
               errors={dummyForm.formState.errors}
             />
           </View>
-          <TouchableOpacity
-            style={{ alignSelf: 'flex-start' }}
-            onPress={() => router.push('/auth/login/forgotpass')}
-          >
-            <RNText
-              variant="medium"
-              size="sm"
-              style={{ color: COLORS.primary, marginTop: 15, marginBottom: 40 }}
-            >
-              Forgot Password?
-            </RNText>
-          </TouchableOpacity>
-          <RNButton value="Login" color={COLORS.primary} />
+
+          <RNButton
+            value="Submit"
+            color={COLORS.primary}
+            buttonStyle={{ marginTop: 40 }}
+            path={'/auth/otp'}
+          />
         </View>
       </KeyboardAwareScrollView>
       <View>
@@ -61,4 +54,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default ResetPassword;

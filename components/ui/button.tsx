@@ -1,7 +1,7 @@
 import { COLORS } from '@/constants';
 import { router } from 'expo-router';
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, ViewStyle } from 'react-native';
 import { RNText } from './text';
 
 const RNButton = ({
@@ -9,11 +9,13 @@ const RNButton = ({
   value,
   tag = 'push',
   color,
+  buttonStyle,
 }: {
   path?: string;
   value: string;
   tag?: string;
   color?: string;
+  buttonStyle?: ViewStyle;
 }) => {
   // console.log(path);
   return (
@@ -28,25 +30,28 @@ const RNButton = ({
           router.replace(path);
         }
       }}
-      style={{
-        backgroundColor: color || '#fff',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingVertical: 15,
-        gap: 15,
-        borderRadius: 4,
-        borderWidth: 1,
-        borderColor: color || COLORS.primary,
-        shadowColor: '#000',
-        shadowOffset: {
-          width: 0,
-          height: 2,
+      style={[
+        {
+          backgroundColor: color || '#fff',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+          paddingVertical: 15,
+          gap: 15,
+          borderRadius: 4,
+          borderWidth: 1,
+          borderColor: color || COLORS.primary,
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
+          elevation: 5,
         },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,
-      }}
+        buttonStyle,
+      ]}
     >
       <RNText
         variant="subtitle"

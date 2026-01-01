@@ -10,7 +10,7 @@ import { useForm } from 'react-hook-form';
 import { TouchableOpacity, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
 
-const index = () => {
+const LogIn = () => {
   const dummyForm = useForm();
   return (
     <BackHeader>
@@ -61,4 +61,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default LogIn;
