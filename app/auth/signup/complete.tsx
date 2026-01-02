@@ -1,8 +1,6 @@
-import Forgot from '@/assets/svgs/forgot.svg';
-import PetCare from '@/assets/svgs/petcare.svg';
+import Happy from '@/assets/svgs/happy.svg';
 import BackHeader from '@/components/layout/BackHeader';
 import RNButton from '@/components/ui/button';
-import { RNInput } from '@/components/ui/input';
 import { RNText } from '@/components/ui/text';
 import { COLORS } from '@/constants';
 import React from 'react';
@@ -10,59 +8,54 @@ import { useForm } from 'react-hook-form';
 import { View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
 
-const ForgotPassword = () => {
+const Complete = () => {
   const dummyForm = useForm();
   return (
     <BackHeader>
       <KeyboardAwareScrollView bottomOffset={50}>
         <View style={{ flex: 1, width: '90%', marginHorizontal: 'auto' }}>
-          <RNText
-            variant="header"
-            size="xl"
-            style={{ marginTop: 40, marginBottom: 25, textAlign: 'center' }}
-          >
-            Forgot your password?
-          </RNText>
-
-          <View
-            style={{
-              width: '80%',
-              alignSelf: 'center',
-              alignItems: 'center',
-              marginBottom: 30,
-            }}
-          >
-            <Forgot width={120} height={110} style={{ alignSelf: 'center' }} />
+          <View style={{ marginVertical: 40, alignItems: 'center' }}>
+            <RNText variant="header" size="xl">
+              Congratulations!
+            </RNText>
             <RNText
               variant="medium"
               size="base"
               style={{ marginTop: 20, textAlign: 'center' }}
             >
-              Enter your phone number or email to recover your password.
+              You are signed up with PetNabor now.
             </RNText>
           </View>
-          <View style={{ gap: 20 }}>
-            <RNInput
-              title="email"
-              control={dummyForm.control}
-              placeholder="Enter phone number or email"
-              errors={dummyForm.formState.errors}
-            />
+
+          <View
+            style={{
+              width: '70%',
+              alignSelf: 'center',
+              alignItems: 'center',
+              marginBottom: 30,
+              marginTop: 10,
+            }}
+          >
+            <Happy style={{ alignSelf: 'center' }} />
+            <RNText
+              variant="medium"
+              size="base"
+              style={{ marginTop: 20, textAlign: 'center' }}
+            >
+              Happy to have you!
+            </RNText>
           </View>
 
           <RNButton
-            value="Submit"
+            value="Home"
             color={COLORS.primary}
             buttonStyle={{ marginTop: 40 }}
-            path={'/auth/otp'}
+            path={'/auth/login'}
           />
         </View>
       </KeyboardAwareScrollView>
-      <View>
-        <PetCare width={'100%'} height={100} />
-      </View>
     </BackHeader>
   );
 };
 
-export default ForgotPassword;
+export default Complete;

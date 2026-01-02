@@ -142,7 +142,12 @@ const SignUP = () => {
               I agree to the terms and condtions
             </RNText>
           </View>
-          <RNButton value="Sign Up" color={COLORS.primary} path={'/auth/otp'} />
+          <RNButton
+            value="Sign Up"
+            color={COLORS.primary}
+            path={'/auth/otp'}
+            params={{ mode: 'signup' }}
+          />
         </View>
       </KeyboardAwareScrollView>
       <View>

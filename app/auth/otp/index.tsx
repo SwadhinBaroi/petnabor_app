@@ -4,15 +4,26 @@ import BackHeader from '@/components/layout/BackHeader';
 import RNButton from '@/components/ui/button';
 import { RNText } from '@/components/ui/text';
 import { COLORS } from '@/constants';
-import React, { useState } from 'react';
+import { useLocalSearchParams } from 'expo-router';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
 import { OtpInput } from 'react-native-otp-entry';
+type OtpMode = 'signup' | 'login';
 
 const index = () => {
   const dummyForm = useForm();
   const [verify, setVerify] = useState(false);
+  const { mode } = useLocalSearchParams<{ mode?: OtpMode }>();
+  const [path, setPath] = useState('');
+
+  useEffect(() => {
+    if (mode === 'signup') setPath('/auth/signup/complete');
+    else setPath('/auth/login/resetpass');
+  }, []);
+
+  console.log(path);
   return (
     <BackHeader>
       <KeyboardAwareScrollView bottomOffset={50}>
@@ -68,7 +79,7 @@ const index = () => {
             value="Verify OTP"
             color={COLORS.primary}
             buttonStyle={{ marginTop: 40 }}
-            path={'/auth/login/passresetsuccess'}
+            path={path}
           />
         </View>
         <View

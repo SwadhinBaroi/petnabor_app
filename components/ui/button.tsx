@@ -4,30 +4,35 @@ import React from 'react';
 import { TouchableOpacity, ViewStyle } from 'react-native';
 import { RNText } from './text';
 
+type RNButtonProps = {
+  path?: string;
+  value: string;
+  tag?: 'push' | 'replace';
+  color?: string;
+  buttonStyle?: ViewStyle;
+  params?: Record<string, string | number | boolean>;
+};
+
 const RNButton = ({
   path,
   value,
-  tag = 'push',
+  tag,
   color,
   buttonStyle,
-}: {
-  path?: string;
-  value: string;
-  tag?: string;
-  color?: string;
-  buttonStyle?: ViewStyle;
-}) => {
+  params,
+}: RNButtonProps) => {
   // console.log(path);
   return (
     <TouchableOpacity
       onPress={() => {
-        console.log('tag:', tag);
-        if (tag === 'push') {
-          console.log('push the path');
-          router.push(path);
-        } else if (tag === 'replace') {
-          console.log('replace the path');
-          router.replace(path);
+        if (!path) return;
+
+        const payload = params ? { pathname: path, params } : path;
+
+        if (tag === 'replace') {
+          router.replace(payload as any);
+        } else {
+          router.push(payload as any);
         }
       }}
       style={[

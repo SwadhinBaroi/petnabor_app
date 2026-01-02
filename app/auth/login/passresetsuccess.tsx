@@ -42,7 +42,7 @@ const ResetPasswordSuccessfull = () => {
           </View>
 
           <RNButton
-            value="Login"
+            value="Log In"
             color={COLORS.primary}
             buttonStyle={{ marginTop: 40 }}
             path={'/auth/login'}

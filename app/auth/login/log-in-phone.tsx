@@ -4,12 +4,13 @@ import RNButton from '@/components/ui/button';
 import { RNInput } from '@/components/ui/input';
 import { RNText } from '@/components/ui/text';
 import { COLORS } from '@/constants';
+import { router } from 'expo-router';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
 
-const ResetPassword = () => {
+const LogInPhone = () => {
   const dummyForm = useForm();
   return (
     <BackHeader>
@@ -20,31 +21,37 @@ const ResetPassword = () => {
             size="xl"
             style={{ marginVertical: 40, textAlign: 'center' }}
           >
-            Reset password
+            Login with your phone
           </RNText>
           <View style={{ gap: 20 }}>
+            {/* <RNInput placeholder="Email" value={email} onChangeText={setEmail} /> */}
             <RNInput
-              title="password"
+              title="phone"
               control={dummyForm.control}
-              placeholder="Enter password"
-              secureTextEntry
+              placeholder="Phone Number"
               errors={dummyForm.formState.errors}
             />
             <RNInput
               title="password"
               control={dummyForm.control}
-              placeholder="Confirm password"
+              placeholder="Password"
               secureTextEntry
               errors={dummyForm.formState.errors}
             />
           </View>
-
-          <RNButton
-            value="Submit"
-            color={COLORS.primary}
-            buttonStyle={{ marginTop: 40 }}
-            path={'/auth/login/passresetsuccess'}
-          />
+          <TouchableOpacity
+            style={{ alignSelf: 'flex-start' }}
+            onPress={() => router.push('/auth/login/forgotpass')}
+          >
+            <RNText
+              variant="medium"
+              size="sm"
+              style={{ color: COLORS.primary, marginTop: 15, marginBottom: 40 }}
+            >
+              Forgot Password?
+            </RNText>
+          </TouchableOpacity>
+          <RNButton value="Login" color={COLORS.primary} />
         </View>
       </KeyboardAwareScrollView>
       <View>
@@ -54,4 +61,4 @@ const ResetPassword = () => {
   );
 };
 
-export default ResetPassword;
+export default LogInPhone;
