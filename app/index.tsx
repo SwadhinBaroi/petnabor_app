@@ -7,5 +7,5 @@ export default function Index() {
     return <Redirect href="/auth" />;
   }
 
-  return <Redirect href="/(tabs)/chat" />;
+  return <Redirect href="/(drawer)/(tabs)/explore" />;
 }

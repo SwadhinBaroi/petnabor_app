@@ -1,3 +1,4 @@
+import { COLORS } from '@/constants';
 import Feather from '@expo/vector-icons/Feather';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
@@ -71,11 +72,11 @@ export default function CustomTabBar({
 const styles = StyleSheet.create({
   tabBar: {
     flexDirection: 'row',
-    backgroundColor: 'white',
+
     width: '100%',
     justifyContent: 'space-around',
-
-    paddingTop: 20,
+    backgroundColor: COLORS.navbg,
+    paddingTop: 10,
     paddingHorizontal: 15,
   },
 });

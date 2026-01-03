@@ -6,4 +6,5 @@ export const COLORS = {
   text: '#212121',
   inputLabel: '#4E6184',
   white: '#FFFFFF',
+  navbg: '#F6F6F6',
 };
